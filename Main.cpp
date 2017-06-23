@@ -213,7 +213,7 @@ int main(){
 								lista_mesas.erase(lista_mesas.begin() + pos);
 								cout << "Mesa eliminada exitosamente" << endl;
 							}
-							cout << "Desea cerrar sesión? [s/n]: ";
+							cout << "¿Desea cerrar sesión? [s/n]: ";
 							cin >> resp;
 						} while (resp != 's');
 					} //Fin if LogIn
@@ -222,7 +222,17 @@ int main(){
 			if (op_login == 2) { //LogIn Jugador
 				for (int i = 0; i < lista_jugador.size(); i++) {
 					if (lista_jugador.at(i) -> getNombre() == nombre && lista_jugador.at(i) -> getId() == id) {
-						cout << "Bienvenido al Casino!" << endl;
+						char resp;
+						if (lista_mesas.size() == 0) {
+							cout << "Lo sentimos, no hay mesas creadas y no puede jugar. ¡Vuelva pronto!" << endl;
+						} else {
+							do {
+								cout << "Bienvenido al Casino!" << endl;
+
+								cout << "¿Desea cerrar sesión? [s/n]: ";
+								cin >> resp;
+							} while (resp == 's');
+						}
 					} //Fin if
 				} //Fin for lista_jugador
 			}
