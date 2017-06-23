@@ -1,27 +1,35 @@
 #include "Jugador.h"
 
-Jugador::Jugador(string lugar_procedencia,string apodo,double dinero){
-	this->lugar_procedencia=lugar_procedencia;
-	this->apodo=apodo;
-	this->dinero=dinero;
-}
-Jugador::Jugador(){
+Jugador :: Jugador() : Personas() {
 
-}void Jugador::setLugar_procedencia(string lugar_procedencia){
-   this-> lugar_procedencia=lugar_procedencia;
 }
-string Jugador::getLugar_procedencia(){
+
+Jugador :: Jugador(string lugar_procedencia, string apodo, double dinero, string nombre, int edad, string id) : Personas(nombre, edad, id) {
+	this -> lugar_procedencia = lugar_procedencia;
+	this -> apodo = apodo;
+	this -> dinero = dinero;
+}
+
+string Jugador :: getLugar_procedencia() {
    return lugar_procedencia;
 }
-void Jugador::setApodo(string apodo){
-   this-> apodo=apodo;
+
+void Jugador :: setLugar_procedencia(string lugar_procedencia) {
+   this -> lugar_procedencia = lugar_procedencia;
 }
-string Jugador::getApodo(){
+
+string Jugador :: getApodo(){
    return apodo;
 }
-void Jugador::setDinero(double dinero){
-   this-> dinero=dinero;
+
+void Jugador :: setApodo(string apodo) {
+   this -> apodo = apodo;
 }
-double Jugador::getDinero(){
+
+double Jugador :: getDinero() {
    return dinero;
+}
+
+void Jugador :: setDinero(double dinero) {
+   this -> dinero = dinero;
 }

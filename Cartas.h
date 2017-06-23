@@ -2,18 +2,20 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 #ifndef CARTAS_H
 #define CARTAS_H
-class Cartas{
-	protected:
+
+using namespace std;
+
+class Cartas {
+	private:
 		string valor;
 		string simbolo;
 		string color;
 	public:
-		Cartas(string,string,string);
 		Cartas();
+		Cartas(string,string,string);
+		
 		string getValor();
 		void setValor(string);
 
@@ -22,6 +24,5 @@ class Cartas{
 
 		string getColor();
 		void setColor(string);
-
 };
 #endif

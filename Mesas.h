@@ -1,22 +1,24 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Repartido.h"
-#include "Jugado.h"
-
-using namespace std;
+#include "Repartidor.h"
+#include "Jugador.h"
 
 #ifndef MESAS_H
 #define MESAS_H
-class Mesas{
-	protected:
+
+using namespace std;
+
+class Mesas {
+	private:
 		int numero;
 		string tipo;
 		Repartidor* repartidor;
 		Jugador* jugador;
 	public:
-		Mesas(int,string,Repartidor*,Jugador*);
 		Mesas();
+		Mesas(int, string, Repartidor*, Jugador*);
+		
 		int getNumero();
 		void setNumero(int);
 
@@ -28,6 +30,5 @@ class Mesas{
 
 		Jugador* getJugador();
 		void setJugador(Jugador*);
-
 };
 #endif

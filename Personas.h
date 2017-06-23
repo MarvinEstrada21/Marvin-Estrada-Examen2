@@ -23,6 +23,6 @@ class Personas{
 		void setEdad(int);
 
 		string getId();
-		void setId(string)
+		void setId(string);
 };
 #endif

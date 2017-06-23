@@ -3,18 +3,19 @@
 #include <vector>
 #include "Cartas.h"
 
-using namespace std;
-
 #ifndef BARAJA_H
 #define BARAJA_H
-class Baraja{
-	protected:
+
+using namespace std;
+
+class Baraja {
+	private:
 		vector<Cartas*> cartas;
 	public:
-		Baraja(vector<Cartas*>);
 		Baraja();
+		Baraja(vector<Cartas*>);
+		
 		vector<Cartas*> getCartas();
 		void setCartas(Cartas*);
-
 };
 #endif

@@ -1,10 +1,10 @@
 Main:   Main.cpp Personas.o Administrador.o Repartidor.o Cartas.o Baraja.o Jugador.o Mesas.o 
 	g++ Main.cpp Personas.o Administrador.o Repartidor.o Cartas.o Baraja.o Jugador.o Mesas.o -o Main
 
-main.o:	Main.cpp Personas.h Administrador.h Repartidor.h Cartas.h Baraja.h Jugador.h Mesas.h 
+Main.o:	Main.cpp Personas.h Administrador.h Repartidor.h Cartas.h Baraja.h Jugador.h Mesas.h 
 	g++ -c Main.cpp
 
-Personas:	Personas.cpp Personas.h
+Personas.o:	Personas.cpp Personas.h
 	g++ -c Personas.cpp
 
 Administrador.o:	Administrador.cpp Administrador.h Personas.h

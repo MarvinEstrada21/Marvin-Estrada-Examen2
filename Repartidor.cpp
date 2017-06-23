@@ -1,27 +1,35 @@
 #include "Repartidor.h"
 
-Repartidor::Repartidor(string dificultad,double dinero,Baraja* baraja){
-	this->dificultad=dificultad;
-	this->dinero=dinero;
-	this->baraja=baraja;
-}
-Repartidor::Repartidor(){
+Repartidor :: Repartidor() : Personas() {
 
-}void Repartidor::setDificultad(string dificultad){
-   this-> dificultad=dificultad;
 }
-string Repartidor::getDificultad(){
+
+Repartidor :: Repartidor(string dificultad, double dinero, Baraja* baraja, string nombre, int edad, string id) : Personas(nombre, edad, id){
+	this -> dificultad = dificultad;
+	this -> dinero = dinero;
+	this -> baraja = baraja;
+}
+
+string Repartidor :: getDificultad() {
    return dificultad;
 }
-void Repartidor::setDinero(double dinero){
-   this-> dinero=dinero;
+
+void Repartidor :: setDificultad(string dificultad) {
+   this -> dificultad = dificultad;
 }
-double Repartidor::getDinero(){
+
+double Repartidor :: getDinero() {
    return dinero;
 }
-void Repartidor::setBaraja(Baraja* baraja){
-   this-> baraja=baraja;
+
+void Repartidor :: setDinero(double dinero) {
+   this -> dinero = dinero;
 }
-Baraja* Repartidor::getBaraja(){
+
+Baraja* Repartidor :: getBaraja() {
    return baraja;
+}
+
+void Repartidor :: setBaraja(Baraja* baraja) {
+   this -> baraja = baraja;
 }

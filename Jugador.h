@@ -1,19 +1,22 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
-using namespace std;
+#include "Personas.h"
 
 #ifndef JUGADOR_H
 #define JUGADOR_H
-class Jugador{
-	protected:
+
+using namespace std;
+
+class Jugador : public Personas{
+	private:
 		string lugar_procedencia;
 		string apodo;
 		double dinero;
 	public:
-		Jugador(string,string,double);
 		Jugador();
+		Jugador(string, string, double, string, int, string);
+
 		string getLugar_procedencia();
 		void setLugar_procedencia(string);
 
@@ -22,6 +25,5 @@ class Jugador{
 
 		double getDinero();
 		void setDinero(double);
-
 };
 #endif

@@ -1,34 +1,44 @@
 #include "Mesas.h"
 
-Mesas::Mesas(int numero,string tipo,Repartidor* repartidor,Jugador* jugador){
-	this->numero=numero;
-	this->tipo=tipo;
-	this->repartidor=repartidor;
-	this->jugador=jugador;
-}
-Mesas::Mesas(){
+Mesas :: Mesas() {
 
-}void Mesas::setNumero(int numero){
-   this-> numero=numero;
 }
-int Mesas::getNumero(){
+
+Mesas :: Mesas(int numero, string tipo, Repartidor* repartidor, Jugador* jugador) {
+   this -> numero = numero;
+   this -> tipo = tipo;
+   this -> repartidor = repartidor;
+   this -> jugador = jugador;
+}
+
+int Mesas :: getNumero() {
    return numero;
 }
-void Mesas::setTipo(string tipo){
-   this-> tipo=tipo;
+
+void Mesas :: setNumero(int numero) {
+   this -> numero = numero;
 }
-string Mesas::getTipo(){
+
+string Mesas :: getTipo() {
    return tipo;
 }
-void Mesas::setRepartidor(Repartidor* repartidor){
-   this-> repartidor=repartidor;
+
+void Mesas :: setTipo(string tipo) {
+   this -> tipo = tipo;
 }
-Repartidor* Mesas::getRepartidor(){
+
+Repartidor* Mesas :: getRepartidor() {
    return repartidor;
 }
-void Mesas::setJugador(Jugador* jugador){
-   this-> jugador=jugador;
+
+void Mesas :: setRepartidor(Repartidor* repartidor) {
+   this -> repartidor = repartidor;
 }
-Jugador* Mesas::getJugador(){
+
+Jugador* Mesas :: getJugador() {
    return jugador;
+}
+
+void Mesas :: setJugador(Jugador* jugador) {
+   this -> jugador = jugador;
 }

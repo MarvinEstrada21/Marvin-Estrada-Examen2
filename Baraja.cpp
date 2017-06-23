@@ -1,13 +1,17 @@
 #include "Baraja.h"
 
-Baraja::Baraja(vector<Cartas*> cartas){
-	this->cartas=cartas;
-}
-Baraja::Baraja(){
+Baraja :: Baraja() {
 
-}void Baraja::setCartas(Cartas* Ccartas){
-   this-> cartas.push_back(Ccartas);
 }
-vector<Cartas*> Baraja::getCartas(){
+
+Baraja :: Baraja(vector<Cartas*> cartas) {
+	this -> cartas = cartas;
+}
+
+vector<Cartas*> Baraja :: getCartas() {
    return cartas;
+}
+
+void Baraja :: setCartas(Cartas* Ccartas) {
+   this-> cartas.push_back(Ccartas);
 }

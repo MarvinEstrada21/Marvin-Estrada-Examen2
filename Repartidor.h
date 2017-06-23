@@ -1,20 +1,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Baraj.h"
-
-using namespace std;
+#include "Baraja.h"
+#include "Personas.h"
 
 #ifndef REPARTIDOR_H
 #define REPARTIDOR_H
-class Repartidor{
-	protected:
+
+using namespace std;
+
+class Repartidor : public Personas {
+	private:
 		string dificultad;
 		double dinero;
 		Baraja* baraja;
 	public:
-		Repartidor(string,double,Baraja*);
 		Repartidor();
+		Repartidor(string, double, Baraja*, string, int, string);
+		
 		string getDificultad();
 		void setDificultad(string);
 
@@ -23,6 +26,5 @@ class Repartidor{
 
 		Baraja* getBaraja();
 		void setBaraja(Baraja*);
-
 };
 #endif
