@@ -18,6 +18,8 @@ using namespace std;
 int main(){
 	vector<Administrador*> lista_admin;
 	vector<Jugador*> lista_jugador;
+	vector<Repartidor*> lista_repartidor;
+	vector<Mesas*> lista_mesas;
 	int opcion;
 	cout << "	MENU DE CASINO	" << endl
 		<< "1.- Agregar Persona" << endl
@@ -90,6 +92,7 @@ int main(){
 		if (opcion == 2) {
 			int op_login;
 			string nombre, id;
+			cout << endl;
 			cout << "	MENU LOGIN	" << endl
 				<< "1.- Administrador" << endl
 				<< "2.- Jugador" << endl;
@@ -102,7 +105,83 @@ int main(){
 			if (op_login == 1) {
 				for (int i = 0;  i < lista_admin.size(); i++) {
 					if (lista_admin.at(i) -> getNombre() == nombre && lista_admin.at(i) -> getId() == id) {
-						cout << "Pollo";
+						int op_admin;
+						//Mesas
+						int numero, pos_rep, pos_jug;
+						string tipo;
+						Repartidor* repartidor;
+						Jugador* jugador;
+						cout << endl;
+						cout << "	MENU ADMINISTRADOR	" << endl
+							<< "1.- Agregar Mesa de BlackJack" << endl
+							<< "2.- Modificar Mesa de BlackJack" << endl
+							<< "3.- Eliminar Mesa de BlackJack" << endl;
+						cout << "Ingrese la opción que desea ejecutar: ";
+						cin >> op_admin;
+						if (op_admin == 1) { //Agregar
+							cout << "Ingrese el número de la mesa: ";
+							cin >> numero;
+							cout << "Ingrese el tipo  de mesa (VIP, Clásica, Viajero): ";
+							cin >> tipo;
+							for (int j = 0; j < lista_repartidor.size(); j++) {
+								cout << j << " ---> " << lista_repartidor.at(j) -> getNombre() << endl;
+							}
+							cout << "Ingrese la posición del Repartidor que desea agregar a la mesa: ";
+							cin >> pos_rep;
+							repartidor = lista_repartidor.at(pos_rep);
+							for (int j = 0; j < lista_jugador.size(); j++) {
+								cout << j << " ---> " << lista_jugador.at(j) -> getNombre() << endl;
+							}
+							cout << "Ingrese la posición del Jugador que desea agregar a la mesa: ";
+							cin >> pos_jug;
+							jugador = lista_jugador.at(pos_jug);
+							lista_mesas.push_back(new Mesas(numero, tipo, repartidor, jugador));
+						}
+						if (op_admin == 2) { //Modificar
+							int pos;
+							for (int j = 0; j < lista_mesas.size(); j++) {
+								cout << j << " ---> " << lista_mesas.at(j) -> getNumero() << endl;
+								cout << j << " ---> " << lista_mesas.at(j) -> getTipo() << endl;
+								cout << j << " ---> " << lista_mesas.at(j) -> getRepartidor() << endl;
+								cout << j << " ---> " << lista_mesas.at(j) -> getJugador() << endl;
+		   					}
+							cout << "Ingrese la posición que desea modificar: ";
+							cin >> pos;
+
+							cout << "Ingrese el número de la mesa: ";
+							cin >> numero;
+							cout << "Ingrese el tipo  de mesa (VIP, Clásica, Viajero): ";
+							cin >> tipo;
+							for (int j = 0; j < lista_repartidor.size(); j++) {
+								cout << j << " ---> " << lista_repartidor.at(j) -> getNombre() << endl;
+							}
+							cout << "Ingrese la posición del Repartidor que desea agregar a la mesa: ";
+							cin >> pos_rep;
+							repartidor = lista_repartidor.at(pos_rep);
+							for (int j = 0; j < lista_jugador.size(); j++) {
+								cout << j << " ---> " << lista_jugador.at(j) -> getNombre() << endl;
+							}
+							cout << "Ingrese la posición del Jugador que desea agregar a la mesa: ";
+							cin >> pos_jug;
+							jugador = lista_jugador.at(pos_jug);
+							lista_mesas.at(pos) -> setNumero(numero);
+							lista_mesas.at(pos) -> setTipo(tipo);
+							lista_mesas.at(pos) -> setRepartidor(repartidor);
+							lista_mesas.at(pos) -> setJugador(jugador);
+						}
+						if (op_admin == 3) { //Eliminar
+							int pos;
+							for (int j = 0; j < lista_mesas.size(); j++) {
+								cout << j << " ---> " << lista_mesas.at(j) -> getNumero() << endl;
+								cout << j << " ---> " << lista_mesas.at(j) -> getTipo() << endl;
+								cout << j << " ---> " << lista_mesas.at(j) -> getRepartidor() << endl;
+								cout << j << " ---> " << lista_mesas.at(j) -> getJugador() << endl;
+		   					}
+							cout << "Ingrese la posición que desea eliminar: ";
+							cin >> pos;
+							lista_mesas.erase(lista_mesas.begin() + pos);
+							cout << "Mesa eliminada exitosamente" << endl;
+						}
 					}
 				}
 			}
