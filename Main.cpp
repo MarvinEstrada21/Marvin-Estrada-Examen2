@@ -20,6 +20,8 @@ int main(){
 	vector<Jugador*> lista_jugador;
 	vector<Repartidor*> lista_repartidor;
 	vector<Mesas*> lista_mesas;
+	vector<Cartas*> lista_cartas;
+	vector<Baraja*> lista_baraja;
 	int opcion;
 	cout << "	MENU DE CASINO	" << endl
 		<< "1.- Agregar Persona" << endl
@@ -81,12 +83,36 @@ int main(){
 				lista_jugador.push_back(new Jugador(lugar_procedencia, apodo, dinero, nombre, edad, id));
 			}
 			if (op_persona == 3) {
+				int cont;
+				string todo;
+				stringstream cant_num;
 				cout << "Ingrese el nombre: ";
 				cin >> nombre;
 				cout << "Ingrese la edad: ";
 				cin >> edad;
 				cout << "Ingrese el número de identidad: ";
 				cin >> id;
+				cout << "Ingrese la dificultad como repartidor (difícil, intermedio, fácil): ";
+				cin >> dificultad;
+				cout << "Ingrese el dinero dado por el casino: ";
+				cin >> dinero_casino;
+				cont = 2;
+				for (int j = 0; j < 9; j++) {
+					cant_num << cont;
+					todo = cant_num.str();
+					lista_cartas.push_back(new Cartas(todo, "♠", "Negro"));
+					lista_cartas.push_back(new Cartas(todo, "♥", "Rojo"));
+					lista_cartas.push_back(new Cartas(todo, "♣", "Negro"));
+					lista_cartas.push_back(new Cartas(todo, "♦", "Rojo"));
+					cont++;
+				}	
+				lista_cartas.push_back(new Cartas("A", "♠", "Negro"));
+				lista_cartas.push_back(new Cartas("J", "♥", "Rojo"));
+				lista_cartas.push_back(new Cartas("Q", "♣", "Negro"));
+				lista_cartas.push_back(new Cartas("K", "♦", "Rojo"));
+				
+				baraja = new Baraja(lista_cartas);
+				lista_repartidor.push_back(new Repartidor(dificultad, dinero_casino, baraja, nombre, edad, id));
 			}
 		}
 		if (opcion == 2) {
@@ -182,8 +208,8 @@ int main(){
 							lista_mesas.erase(lista_mesas.begin() + pos);
 							cout << "Mesa eliminada exitosamente" << endl;
 						}
-					}
-				}
+					} //Fin if LogIn
+				} //Fin for lista_admin
 			}
 			if (op_login == 2) {
 
