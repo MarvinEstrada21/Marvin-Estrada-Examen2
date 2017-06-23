@@ -21,7 +21,6 @@ int main(){
 	vector<Repartidor*> lista_repartidor;
 	vector<Mesas*> lista_mesas;
 	vector<Cartas*> lista_cartas;
-	vector<Baraja*> lista_baraja;
 	int opcion;
 	cout << "	MENU DE CASINO	" << endl
 		<< "1.- Agregar Persona" << endl
@@ -50,7 +49,7 @@ int main(){
 				<< "3.- Repartidor" << endl;
 			cout << "Ingrese la persona que desea agregar: ";
 			cin >> op_persona;
-			if (op_persona == 1) {
+			if (op_persona == 1) { //Administrador
 				cout << "Ingrese el nombre: ";
 				cin >> nombre;
 				cout << "Ingrese la edad: ";
@@ -67,13 +66,15 @@ int main(){
 				cin >> sueldo;
 				lista_admin.push_back(new Administrador(exp_laboral, rango_laboral, sueldo, nombre, edad, id));
 			}
-			if (op_persona == 2) {
+			if (op_persona == 2) { //Jugador
 				cout << "Ingrese el nombre: ";
 				cin >> nombre;
 				cout << "Ingrese la edad: ";
 				cin >> edad;
-				cout << "Ingrese el número de identidad: ";
-				cin >> id;
+				while (id.size() != 4){
+					cout << "Ingrese el número de identidad (4 números): ";
+					cin >> id;
+				}
 				cout << "Ingrese su lugar de procedencia: ";
 				cin >> lugar_procedencia;
 				cout << "Ingrese su apodo en el casino: ";
@@ -82,7 +83,7 @@ int main(){
 				cin >> dinero;
 				lista_jugador.push_back(new Jugador(lugar_procedencia, apodo, dinero, nombre, edad, id));
 			}
-			if (op_persona == 3) {
+			if (op_persona == 3) { //Repartidor
 				int cont;
 				string todo;
 				stringstream cant_num;
@@ -90,8 +91,10 @@ int main(){
 				cin >> nombre;
 				cout << "Ingrese la edad: ";
 				cin >> edad;
-				cout << "Ingrese el número de identidad: ";
-				cin >> id;
+				while (id.size() != 4){
+					cout << "Ingrese el número de identidad (4 números): ";
+					cin >> id;
+				}
 				cout << "Ingrese la dificultad como repartidor (difícil, intermedio, fácil): ";
 				cin >> dificultad;
 				cout << "Ingrese el dinero dado por el casino: ";
@@ -115,7 +118,7 @@ int main(){
 				lista_repartidor.push_back(new Repartidor(dificultad, dinero_casino, baraja, nombre, edad, id));
 			}
 		}
-		if (opcion == 2) {
+		if (opcion == 2) { //LogIn
 			int op_login;
 			string nombre, id;
 			cout << endl;
@@ -128,91 +131,100 @@ int main(){
 			cin >> nombre;
 			cout << "Ingrese el número de identidad: ";
 			cin >> id;
-			if (op_login == 1) {
+			if (op_login == 1) { //LogIn Administrador
 				for (int i = 0;  i < lista_admin.size(); i++) {
 					if (lista_admin.at(i) -> getNombre() == nombre && lista_admin.at(i) -> getId() == id) {
-						int op_admin;
-						//Mesas
-						int numero, pos_rep, pos_jug;
-						string tipo;
-						Repartidor* repartidor;
-						Jugador* jugador;
-						cout << endl;
-						cout << "	MENU ADMINISTRADOR	" << endl
-							<< "1.- Agregar Mesa de BlackJack" << endl
-							<< "2.- Modificar Mesa de BlackJack" << endl
-							<< "3.- Eliminar Mesa de BlackJack" << endl;
-						cout << "Ingrese la opción que desea ejecutar: ";
-						cin >> op_admin;
-						if (op_admin == 1) { //Agregar
-							cout << "Ingrese el número de la mesa: ";
-							cin >> numero;
-							cout << "Ingrese el tipo  de mesa (VIP, Clásica, Viajero): ";
-							cin >> tipo;
-							for (int j = 0; j < lista_repartidor.size(); j++) {
-								cout << j << " ---> " << lista_repartidor.at(j) -> getNombre() << endl;
+						char resp;
+						do {
+							int op_admin;
+							//Mesas
+							int numero, pos_rep, pos_jug;
+							string tipo;
+							Repartidor* repartidor;
+							Jugador* jugador;
+							cout << endl;
+							cout << "	MENU ADMINISTRADOR	" << endl
+								<< "1.- Agregar Mesa de BlackJack" << endl
+								<< "2.- Modificar Mesa de BlackJack" << endl
+								<< "3.- Eliminar Mesa de BlackJack" << endl;
+							cout << "Ingrese la opción que desea ejecutar: ";
+							cin >> op_admin;
+							if (op_admin == 1) { //Agregar
+								cout << "Ingrese el número de la mesa: ";
+								cin >> numero;
+								cout << "Ingrese el tipo  de mesa (VIP, Clásica, Viajero): ";
+								cin >> tipo;
+								for (int j = 0; j < lista_repartidor.size(); j++) {
+									cout << j << " ---> " << lista_repartidor.at(j) -> getNombre() << endl;
+								}
+								cout << "Ingrese la posición del Repartidor que desea agregar a la mesa: ";
+								cin >> pos_rep;
+								repartidor = lista_repartidor.at(pos_rep);
+								for (int j = 0; j < lista_jugador.size(); j++) {
+									cout << j << " ---> " << lista_jugador.at(j) -> getNombre() << endl;
+								}
+								cout << "Ingrese la posición del Jugador que desea agregar a la mesa: ";
+								cin >> pos_jug;
+								jugador = lista_jugador.at(pos_jug);
+								lista_mesas.push_back(new Mesas(numero, tipo, repartidor, jugador));
 							}
-							cout << "Ingrese la posición del Repartidor que desea agregar a la mesa: ";
-							cin >> pos_rep;
-							repartidor = lista_repartidor.at(pos_rep);
-							for (int j = 0; j < lista_jugador.size(); j++) {
-								cout << j << " ---> " << lista_jugador.at(j) -> getNombre() << endl;
-							}
-							cout << "Ingrese la posición del Jugador que desea agregar a la mesa: ";
-							cin >> pos_jug;
-							jugador = lista_jugador.at(pos_jug);
-							lista_mesas.push_back(new Mesas(numero, tipo, repartidor, jugador));
-						}
-						if (op_admin == 2) { //Modificar
-							int pos;
-							for (int j = 0; j < lista_mesas.size(); j++) {
-								cout << j << " ---> " << lista_mesas.at(j) -> getNumero() << endl;
-								cout << j << " ---> " << lista_mesas.at(j) -> getTipo() << endl;
-								cout << j << " ---> " << lista_mesas.at(j) -> getRepartidor() << endl;
-								cout << j << " ---> " << lista_mesas.at(j) -> getJugador() << endl;
-		   					}
-							cout << "Ingrese la posición que desea modificar: ";
-							cin >> pos;
+							if (op_admin == 2) { //Modificar
+								int pos;
+								for (int j = 0; j < lista_mesas.size(); j++) {
+									cout << j << " ---> " << lista_mesas.at(j) -> getNumero() << endl;
+									cout << j << " ---> " << lista_mesas.at(j) -> getTipo() << endl;
+									cout << j << " ---> " << lista_mesas.at(j) -> getRepartidor() << endl;
+									cout << j << " ---> " << lista_mesas.at(j) -> getJugador() << endl;
+			   					}
+								cout << "Ingrese la posición que desea modificar: ";
+								cin >> pos;
 
-							cout << "Ingrese el número de la mesa: ";
-							cin >> numero;
-							cout << "Ingrese el tipo  de mesa (VIP, Clásica, Viajero): ";
-							cin >> tipo;
-							for (int j = 0; j < lista_repartidor.size(); j++) {
-								cout << j << " ---> " << lista_repartidor.at(j) -> getNombre() << endl;
+								cout << "Ingrese el número de la mesa: ";
+								cin >> numero;
+								cout << "Ingrese el tipo  de mesa (VIP, Clásica, Viajero): ";
+								cin >> tipo;
+								for (int j = 0; j < lista_repartidor.size(); j++) {
+									cout << j << " ---> " << lista_repartidor.at(j) -> getNombre() << endl;
+								}
+								cout << "Ingrese la posición del Repartidor que desea agregar a la mesa: ";
+								cin >> pos_rep;
+								repartidor = lista_repartidor.at(pos_rep);
+								for (int j = 0; j < lista_jugador.size(); j++) {
+									cout << j << " ---> " << lista_jugador.at(j) -> getNombre() << endl;
+								}
+								cout << "Ingrese la posición del Jugador que desea agregar a la mesa: ";
+								cin >> pos_jug;
+								jugador = lista_jugador.at(pos_jug);
+								lista_mesas.at(pos) -> setNumero(numero);
+								lista_mesas.at(pos) -> setTipo(tipo);
+								lista_mesas.at(pos) -> setRepartidor(repartidor);
+								lista_mesas.at(pos) -> setJugador(jugador);
 							}
-							cout << "Ingrese la posición del Repartidor que desea agregar a la mesa: ";
-							cin >> pos_rep;
-							repartidor = lista_repartidor.at(pos_rep);
-							for (int j = 0; j < lista_jugador.size(); j++) {
-								cout << j << " ---> " << lista_jugador.at(j) -> getNombre() << endl;
+							if (op_admin == 3) { //Eliminar
+								int pos;
+								for (int j = 0; j < lista_mesas.size(); j++) {
+									cout << j << " ---> " << lista_mesas.at(j) -> getNumero() << endl;
+									cout << j << " ---> " << lista_mesas.at(j) -> getTipo() << endl;
+									cout << j << " ---> " << lista_mesas.at(j) -> getRepartidor() << endl;
+									cout << j << " ---> " << lista_mesas.at(j) -> getJugador() << endl;
+			   					}
+								cout << "Ingrese la posición que desea eliminar: ";
+								cin >> pos;
+								lista_mesas.erase(lista_mesas.begin() + pos);
+								cout << "Mesa eliminada exitosamente" << endl;
 							}
-							cout << "Ingrese la posición del Jugador que desea agregar a la mesa: ";
-							cin >> pos_jug;
-							jugador = lista_jugador.at(pos_jug);
-							lista_mesas.at(pos) -> setNumero(numero);
-							lista_mesas.at(pos) -> setTipo(tipo);
-							lista_mesas.at(pos) -> setRepartidor(repartidor);
-							lista_mesas.at(pos) -> setJugador(jugador);
-						}
-						if (op_admin == 3) { //Eliminar
-							int pos;
-							for (int j = 0; j < lista_mesas.size(); j++) {
-								cout << j << " ---> " << lista_mesas.at(j) -> getNumero() << endl;
-								cout << j << " ---> " << lista_mesas.at(j) -> getTipo() << endl;
-								cout << j << " ---> " << lista_mesas.at(j) -> getRepartidor() << endl;
-								cout << j << " ---> " << lista_mesas.at(j) -> getJugador() << endl;
-		   					}
-							cout << "Ingrese la posición que desea eliminar: ";
-							cin >> pos;
-							lista_mesas.erase(lista_mesas.begin() + pos);
-							cout << "Mesa eliminada exitosamente" << endl;
-						}
+							cout << "Desea cerrar sesión? [s/n]: ";
+							cin >> resp;
+						} while (resp != 's');
 					} //Fin if LogIn
 				} //Fin for lista_admin
 			}
-			if (op_login == 2) {
-
+			if (op_login == 2) { //LogIn Jugador
+				for (int i = 0; i < lista_jugador.size(); i++) {
+					if (lista_jugador.at(i) -> getNombre() == nombre && lista_jugador.at(i) -> getId() == id) {
+						cout << "Bienvenido al Casino!" << endl;
+					} //Fin if
+				} //Fin for lista_jugador
 			}
 		}
 		cout << endl;
