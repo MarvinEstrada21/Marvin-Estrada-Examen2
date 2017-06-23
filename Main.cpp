@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "Personas.h"
 #include "Administrador.h"
@@ -35,6 +38,7 @@ int main(){
 			//Repartidor
 			string dificultad; 
 			double dinero_casino; 
+			Baraja* baraja;
 			cout << endl;
 			cout << "	AGREGAR NUEVA PERSONA	" << endl
 				<< "1.- Administrador" << endl
@@ -47,8 +51,10 @@ int main(){
 				cin >> nombre;
 				cout << "Ingrese la edad: ";
 				cin >> edad;
-				cout << "Ingrese el número de identidad: ";
-				cin >> id;
+				while (id.size() != 4){
+					cout << "Ingrese el número de identidad (4 números): ";
+					cin >> id;
+				}
 				cout << "Ingrese la experiencia laboral (años de trabajo en otros casinos): ";
 				cin >> exp_laboral;
 				cout << "Ingrese el rango de administrador propuesto a trabajar (Tiempo Completo, Medio-Tiempo, Gerente General): ";
@@ -82,7 +88,27 @@ int main(){
 			}
 		}
 		if (opcion == 2) {
+			int op_login;
+			string nombre, id;
+			cout << "	MENU LOGIN	" << endl
+				<< "1.- Administrador" << endl
+				<< "2.- Jugador" << endl;
+			cout << "Ingrese la opción que desea ejecutar: ";
+			cin >> op_login;
+			cout << "Ingrese el Nombre: ";
+			cin >> nombre;
+			cout << "Ingrese el número de identidad: ";
+			cin >> id;
+			if (op_login == 1) {
+				for (int i = 0;  i < lista_admin.size(); i++) {
+					if (lista_admin.at(i) -> getNombre() == nombre && lista_admin.at(i) -> getId() == id) {
+						cout << "Pollo";
+					}
+				}
+			}
+			if (op_login == 2) {
 
+			}
 		}
 		cout << endl;
 		cout << "	MENU DE CASINO	" << endl
@@ -93,4 +119,26 @@ int main(){
 		cin >> opcion;
 	}
 	return 0;
+}
+
+string PLAleatorio() {
+	int random;
+	stringstream aleat;
+	string aleat2;
+	for (int i = 0; i < 52; ++i) {
+		random = rand() % 11 + 0;
+		if (random == 0){
+			aleat << "A";
+		} else if (random == 1){
+			aleat << "B";
+		} else if (random == 2){
+			aleat << "C";
+		} else if (random == 3){
+			aleat << "D";
+		} else {
+			aleat << random;
+		}
+	}
+	aleat2 = aleat.str();
+	return aleat2;
 }
