@@ -235,7 +235,8 @@ int main(){
 									if (apuesta > lista_jugador.at(i) -> getDinero()) {
 										cout << "Lo sentimos, no tiene el dinero suficiente para apostar" << endl;
 									} else {
-										
+										lista_repartidor.at(i) -> getBaraja();
+										cout << "Actualmente hay problemas técnicos, por favor vuelva pronto a jugar." << endl;
 									}
 									cout << "¿Desea cerrar sesión? [s/n]: ";
 									cin >> resp;
