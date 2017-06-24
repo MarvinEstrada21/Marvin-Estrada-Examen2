@@ -227,10 +227,19 @@ int main(){
 							cout << "Lo sentimos, no hay mesas creadas y no puede jugar. ¡Vuelva pronto!" << endl;
 						} else {
 							do {
-								cout << "Bienvenido al Casino!" << endl;
-
-								cout << "¿Desea cerrar sesión? [s/n]: ";
-								cin >> resp;
+								if (dynamic_cast<Jugador*>(lista_jugador[i])) {
+									double apuesta;
+									cout << "Bienvenido al Casino!" << endl;
+									cout << "Ingrese la cantidad a apostar: ";
+									cin >> apuesta;
+									if (apuesta > lista_jugador.at(i) -> getDinero()) {
+										cout << "Lo sentimos, no tiene el dinero suficiente para apostar" << endl;
+									} else {
+										
+									}
+									cout << "¿Desea cerrar sesión? [s/n]: ";
+									cin >> resp;
+								}
 							} while (resp == 's');
 						}
 					} //Fin if
@@ -246,26 +255,4 @@ int main(){
 		cin >> opcion;
 	}
 	return 0;
-}
-
-string PLAleatorio() {
-	int random;
-	stringstream aleat;
-	string aleat2;
-	for (int i = 0; i < 52; ++i) {
-		random = rand() % 11 + 0;
-		if (random == 0){
-			aleat << "A";
-		} else if (random == 1){
-			aleat << "B";
-		} else if (random == 2){
-			aleat << "C";
-		} else if (random == 3){
-			aleat << "D";
-		} else {
-			aleat << random;
-		}
-	}
-	aleat2 = aleat.str();
-	return aleat2;
 }
